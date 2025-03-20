@@ -25,6 +25,14 @@ const tipos = ['C','D','H','S'];
 const especiales = ['A','J','Q','K'];
 
 
+let puntosJugador = 0, 
+    puntosComputadora = 0;
+
+// REFERENCIAS DEL HTML
+
+const btnPedir = document.querySelector('#btnPedir');
+
+
 // Esta función crea un nuevo deck
 const crearDeck = () => {
 
@@ -69,13 +77,8 @@ const pedirCarta = () =>{
     }
 
     const carta = deck.pop();
-
-    console.log(deck);
-    console.log(carta);
     return carta;    
 }
-
-pedirCarta();
 
 const valorCarta = (carta) =>{
 
@@ -85,4 +88,17 @@ const valorCarta = (carta) =>{
             : valor * 1;
 }
 
-valorCarta('KD');
+
+
+// Eventos
+
+// una funcion que se envia como argumento callback
+btnPedir.addEventListener('click', () =>
+    {
+        const carta = pedirCarta();
+        puntosJugador = puntosJugador + valorCarta(carta);
+        console.log(puntosJugador);
+        document.querySelector('#numeroJ1').innerText = puntosJugador;
+    })
+    
+
